@@ -26,16 +26,17 @@
 #include "neservice_common.pb.h"
 #include "neservice_ptn_common.pb.h"
 // @@protoc_insertion_point(includes)
+#include "ptnnecfgdll.h"
 
 namespace NESERVICE {
 
 // Internal implementation detail -- do not call these.
-void protobuf_AddDesc_pve_2eproto();
-void protobuf_AssignDesc_pve_2eproto();
-void protobuf_ShutdownFile_pve_2eproto();
+PTNNECFGDLL_PUBLIC_API void protobuf_AddDesc_pve_2eproto();
+PTNNECFGDLL_PUBLIC_API void protobuf_AssignDesc_pve_2eproto();
+PTNNECFGDLL_PUBLIC_API void protobuf_ShutdownFile_pve_2eproto();
 
 class pve;
 
 // ===================================================================
 
-class pve : public ::google::protobuf::Message {
+class PTNNECFGDLL_PUBLIC_APIpve : public ::google::protobuf::Message {
