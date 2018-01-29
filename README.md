@@ -1,9 +1,13 @@
 # python-exercise
 
-econometric
+1.econometric
 =================================
 coursera
 
-re
+2.re
 =================================
 regular expression
+
+3.high-performance-python
+=================================
+the book <High Performance Python> examples
