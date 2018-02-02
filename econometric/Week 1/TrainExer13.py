@@ -5,27 +5,31 @@ import matplotlib as mp
 mp.use('Agg')
 import pandas as pd
 import math
-from ExerHelper import ExerRegression
+import os
+import sys
+sys.path.append(os.path.abspath('..'))
+
+import ExerHelper.ExerRegression as ER
 
 df = pd.read_csv('TrainExer13.txt', sep='\t')
 
-ER = ExerRegression(df['Game'], df['Winning time men'])
-a, b = ER.fit()
+r = ER.SingleRegression(df['Game'], df['Winning time men'])
+a, b = r.fit()
 
 print('a = ', a, ' b= ', b)
 
 #R Square
-R_square = ER.R_square()
+R_square = r.R_square()
 
 print('R_square = ', R_square)
 
 #s Square
-s_square = ER.s_square()
+s_square = r.s_square()
 
 print('s_square = ', s_square)
 
 #SEb
-SEb = ER.SEb()
+SEb = r.SEb()
 
 print('SEb = ', SEb)
 

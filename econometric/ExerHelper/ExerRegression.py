@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import math
 
-class ExerRegression:
+class SingleRegression:
 
     def __init__(self, x, y):
         self.x = x
