@@ -5,7 +5,11 @@ import matplotlib as mp
 mp.use('Agg')
 import pandas as pd
 import math
+import os
+import sys
+sys.path.append(os.path.abspath('..'))
 
+import ExerHelper.ExerRegression as ER
 
 df = pd.read_csv('TestExer-1-sales-round1.txt', sep='\t')
 del df['Observ.']
@@ -16,29 +20,14 @@ plt.savefig('TestExer-1-sales-round1_scatter.png')
 plt.clear()
 
 #Compute mean, x=Game, y=Time
-x_mean = df['Advert.'].mean()
-y_mean = df['Sales'].mean()
-
-#Compute x, y diff mean
-x_diff = (df['Advert.'] - x_mean)
-y_diff = (df['Sales'] - y_mean)
-
-#Compute b
-b = (x_diff * y_diff).sum() / (x_diff**2).sum()
-a = y_mean - b * x_mean
+r = ER.SingleRegression(df['Advert.'], df['Sales'])
+a, b = r.fit()
 
 print('a = ', a, ' b= ', b)
 
+e = r.residual()
 
-#residuals
-e = df['Sales'] - a - df['Advert.'] * b
-
-#s Square
-s_square = ((e - e.mean())**2).sum() / (len(e) - 2)
-
-#SEb
-SEb = math.sqrt(s_square / (x_diff**2).sum())
-
+SEb = r.SEb()
 print('SEb = ', SEb)
 
 #tb
@@ -54,28 +43,13 @@ plt.clear()
 df.drop([13,], inplace=True)
 
 #Compute mean, x=Game, y=Time
-x_mean = df['Advert.'].mean()
-y_mean = df['Sales'].mean()
-
-#Compute x, y diff mean
-x_diff = (df['Advert.'] - x_mean)
-y_diff = (df['Sales'] - y_mean)
-
-#Compute b
-b = (x_diff * y_diff).sum() / (x_diff**2).sum()
-a = y_mean - b * x_mean
+r = ER.SingleRegression(df['Advert.'], df['Sales'])
+a, b = r.fit()
 
 print('a = ', a, ' b= ', b)
 
-
-#residuals
-e = df['Sales'] - a - df['Advert.'] * b
-
-#s Square
-s_square = ((e - e.mean())**2).sum() / (len(e) - 2)
-
 #SEb
-SEb = math.sqrt(s_square / (x_diff**2).sum())
+SEb = r.SEb()
 
 print('SEb = ', SEb)
 

@@ -41,6 +41,7 @@ class SingleRegression:
         return self.s_2
 
     def SEb(self):
+        self.s_square()
         self.SEb = math.sqrt(self.s_2 / (self.x_diff**2).sum())
 
         return self.SEb
