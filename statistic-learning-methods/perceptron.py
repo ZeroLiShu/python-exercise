@@ -2,6 +2,7 @@
 
 import numpy as np
 import pysnooper
+import random
 
 def predict(w, x, b):
     """
@@ -27,9 +28,19 @@ def train(x, y, h):
     [rows, cols] = x.shape
     w = np.zeros((rows, 1))
     b = 0
-    f = np.dot(w.T, x) + b
-    L = y * f
-    idx = np.where(L <= 0)
+
+    while (True):
+        f = np.dot(w.T, x) + b
+        L = y * f
+        idx = np.where(L <= 0)
+
+        sz = len(idx[0])
+        if sz <= 0:
+            break
+        
+        i = random.randint(1, sz)
+        w = w + h * y[0][i-1] * x[:2, i-1:i]
+        b = b + h * y[0][i-1]
 
 
 
@@ -40,6 +51,6 @@ if __name__ == "__main__":
     x = np.array([[1,1,1], [2,2,2]])
 
     #y'shape is 1 row, 3 columns, n=1, N=3
-    y = np.array([1,-1,-1])
+    y = np.array([[1,-1,-1]])
     h = 0.1
     train(x, y, h)
